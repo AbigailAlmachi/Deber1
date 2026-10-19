@@ -4,10 +4,10 @@ public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
 
-        Pedido pedido = new Pedido(
-                "Abigail", "laptop", 15000.0, "abigail@gmail.com");
+        Entrada entrada = new Entrada(
+                "Abigail", "Avengers", 12.5, "abigail@gmail.com");
 
-        PedidoService pedidoService = new PedidoService();
-        pedidoService.realizar(pedido);
+        EntradaService entradaService = new EntradaService();
+        entradaService.realizar(entrada);
     }
 }

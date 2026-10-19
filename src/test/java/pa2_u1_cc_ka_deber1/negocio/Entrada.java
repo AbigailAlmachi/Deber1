@@ -1,17 +1,17 @@
 package pa2_u1_cc_ka_deber1.negocio;
 
-public class Pedido {
+public class Entrada {
     private String cliente;
-    private String producto;
+    private String pelicula;
     private double total;
     private String correo;
 
-    public Pedido() {
+    public Entrada() {
     }
 
-    public Pedido(String cliente, String producto, double total, String correo) {
+    public Entrada(String cliente, String pelicula, double total, String correo) {
         this.cliente = cliente;
-        this.producto = producto;
+        this.pelicula = pelicula;
         this.total = total;
         this.correo = correo;
     }
@@ -24,12 +24,12 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public String getProducto() {
-        return producto;
+    public String getPelicula() {
+        return pelicula;
     }
 
-    public void setProducto(String producto) {
-        this.producto = producto;
+    public void setPelicula(String pelicula) {
+        this.pelicula = pelicula;
     }
 
     public double getTotal() {
