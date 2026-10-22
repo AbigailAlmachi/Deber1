@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.inject.Singleton;
  
  
@@ -30,28 +31,35 @@ public class PedidoService {
         System.out.println("Inyectando dependencias por metodo");
         this.mailService = mailService;
     }*/
-
+    @Inject 
+    @Named ("mail")
+    private Notificacion correoService;
+    @Inject
+    @Named ("sms")
+    private Notificacion smsService;
 
     public void realizar(Pedido pedido ){
 
         //Inyeccion de dependencias por CDI (Lookup)
-        MailService mailService = CDI.current().select(MailService.class).get();
+        //MailService mailService = CDI.current().select(MailService.class).get();
 
 
         System.out.println("Pedido realizado paa el cliente: " + pedido.getCliente());
         System.out.println("Producto: " + pedido.getProducto());
         System.out.println("Total : " + pedido.getTotal());
         System.out.println("Correo: " + pedido.getCorreo());
+
+        //Notificacion de peiddo por correo
+
+        this.correoService.enviar(pedido.getCorreo(), "Pedido realizado con exito");
+        
+
+        //Notificacion de peiddo por SMS
+
+        this.smsService.enviar(pedido.getTelefono(), "Pedido realizado con exito");
+
  
         System.out.println("Pedido realizado con exito");
- 
- 
-        //MailService mailService = new MailService();
-        //String asunto = "confirmacion de pedido";
-        //String cuerpo = "Estimado" + pedido.getCliente() + ", su pedido de "
-        //+ pedido.getProducto() + "por un total de $ " + pedido.getTotal()
-        //+ "ha sido realizado con exito.";
- 
  
  
     }

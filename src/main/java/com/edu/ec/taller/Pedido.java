@@ -7,8 +7,15 @@ public class Pedido {
     private String Producto;
     private double Total;
     private String Correo;
+    private String Telefono;
  
    
+    public String getTelefono() {
+        return Telefono;
+    }
+    public void setTelefono(String telefono) {
+        Telefono = telefono;
+    }
     public String getCliente() {
         return Cliente;
     }
