@@ -1,5 +1,6 @@
 package pa2_u1_cc_ka.negocio;
 
+import io.quarkus.arc.Unremovable;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Singleton;
 
