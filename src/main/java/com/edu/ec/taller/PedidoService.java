@@ -2,6 +2,7 @@ package com.edu.ec.taller;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.inject.spi.CDI;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
  
@@ -12,15 +13,15 @@ import jakarta.inject.Singleton;
 public class PedidoService {
     
     //--Inyeccion de dependencias por atributo
-    //@Inject
-    //private MailService mailService;
+    /*@Inject
+    private MailService mailService;*/
 
 
     //--Inyeccion de dependencias por constructor
-    private MailService mailService;
+    /*private MailService mailService;
     public PedidoService(MailService mailService) {//donde quiero inyectar se crea el constructor
         this.mailService = mailService;
-    }
+    }*/
 
     //--Inyeccion de dependencias por metodo ->setters
     /*private MailService mailService;
@@ -31,14 +32,18 @@ public class PedidoService {
     }*/
 
 
-
     public void realizar(Pedido pedido ){
+
+        //Inyeccion de dependencias por CDI (Lookup)
+        MailService mailService = CDI.current().select(MailService.class).get();
+
+
         System.out.println("Pedido realizado paa el cliente: " + pedido.getCliente());
         System.out.println("Producto: " + pedido.getProducto());
         System.out.println("Total : " + pedido.getTotal());
         System.out.println("Correo: " + pedido.getCorreo());
  
-        System.out.println(" Pedido realizado con exito");
+        System.out.println("Pedido realizado con exito");
  
  
         //MailService mailService = new MailService();

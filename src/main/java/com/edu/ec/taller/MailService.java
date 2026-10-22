@@ -1,11 +1,13 @@
 package com.edu.ec.taller;
 
  
+import io.quarkus.arc.Unremovable;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Singleton;
  
 @ApplicationScoped
+@Unremovable 
 //@RequestScoped
 //@Singleton  
 public class MailService {
