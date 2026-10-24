@@ -34,6 +34,7 @@ public class PedidoService {
     @Inject 
     @Named ("mail")
     private Notificacion correoService;
+
     @Inject
     @Named ("sms")
     private Notificacion smsService;
@@ -52,12 +53,13 @@ public class PedidoService {
         //Notificacion de peiddo por correo
 
         this.correoService.enviar(pedido.getCorreo(), "Pedido realizado con exito");
+        this.correoService.setCantidad(this.correoService.getCantidad() + 1);
+        System.out.println("Cantidad de correos enviados: "+ this.correoService.getCantidad());
         
-
         //Notificacion de peiddo por SMS
 
         this.smsService.enviar(pedido.getTelefono(), "Pedido realizado con exito");
-
+        this.smsService.setCantidad(this.smsService.getCantidad() + 1);
  
         System.out.println("Pedido realizado con exito");
  
