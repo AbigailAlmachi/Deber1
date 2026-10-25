@@ -1,62 +1,22 @@
-# quarkus-getting-started
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Preguntas de análisis
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+1. ¿En qué parte del ejercicio se aplica IoC y en cuál DI?
 
-## Running the application in dev mode
+IoC: Quarkus crea los objetos. DI: VentaService recibe las calculadoras por atributo y Auditoria por constructor.
 
-You can run your application in dev mode that enables live coding using:
+2. ¿Qué función cumplen los Qualifiers y por qué son necesarios?
 
-```shell script
-./mvnw quarkus:dev
-```
+Ponen nombre a cada implementación (@Named). Hacen falta porque Regular y VIP son del mismo tipo y Quarkus no sabría cuál elegir.
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+3. ¿Cuál es la diferencia entre @ApplicationScoped y @Dependent?
 
-## Packaging and running the application
+@ApplicationScoped es una sola instancia compartida por toda la app. @Dependent es una instancia propia para cada clase que la inyecta.
 
-The application can be packaged using:
+4. ¿Por qué las instancias @ApplicationScoped pueden reutilizarse entre varias ventas?
 
-```shell script
-./mvnw package
-```
+Porque se crean una vez y no guardan datos de cada venta. El UUID es el mismo en las cuatro ventas.
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+5. ¿Qué sucedería si se elimina el Qualifier de un punto de inyección de CalculadoraDescuento?
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/quarkus-getting-started-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Provided Code
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+Daría error al arrancar, porque habría dos opciones y Quarkus no sabría cuál inyectar.
