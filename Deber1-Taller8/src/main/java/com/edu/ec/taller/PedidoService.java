@@ -1,13 +1,19 @@
 package com.edu.ec.taller;
 
 import com.edu.ec.taller.interceptors.Auditoria;
+import com.edu.ec.taller.interceptors.Mail;
+import com.edu.ec.taller.interceptors.MedirTiempo;
+import com.edu.ec.taller.interceptors.Sms;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped //delego el control al contenedor
 public class PedidoService {
 
+    @MedirTiempo
     @Auditoria
+    @Sms
+    @Mail
     public String realizar(Pedido pedido) {
         long init = System.currentTimeMillis();
         try {
@@ -24,7 +30,7 @@ public class PedidoService {
         System.out.println("Pedido realizado con exito. \n :::::::::::::::::::::::::::::: ");
         long fin = System.currentTimeMillis() - init;
         System.out.println("[PedidoService] Se ha ejecutado correctamente \nTiempo de ejecucion : " + fin);
-        return "Pedido procesado";
+        return "[PedidoService] = Pedido procesado";
     }
 
 }

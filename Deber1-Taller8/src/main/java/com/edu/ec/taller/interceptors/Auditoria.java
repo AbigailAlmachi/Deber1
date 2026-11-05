@@ -1,8 +1,6 @@
 package com.edu.ec.taller.interceptors;
 
 import java.lang.annotation.*;
-
-
 import jakarta.interceptor.InterceptorBinding;
 
 //1era parte de la creacion de un interceptor, se crea una anotacion para poder usarla en los metodos que se quieren interceptar
