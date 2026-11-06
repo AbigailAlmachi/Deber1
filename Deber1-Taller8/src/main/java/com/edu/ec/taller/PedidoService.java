@@ -4,16 +4,18 @@ import com.edu.ec.taller.interceptors.Auditoria;
 import com.edu.ec.taller.interceptors.Mail;
 import com.edu.ec.taller.interceptors.MedirTiempo;
 import com.edu.ec.taller.interceptors.Sms;
+import com.edu.ec.taller.interceptors.Whatsapp;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped //delego el control al contenedor
 public class PedidoService {
 
-    @MedirTiempo
-    @Auditoria
-    @Sms
-    @Mail
+    //@MedirTiempo
+    //@Auditoria
+    //@Sms
+    //@Mail
+    @Whatsapp 
     public String realizar(Pedido pedido) {
         long init = System.currentTimeMillis();
         try {

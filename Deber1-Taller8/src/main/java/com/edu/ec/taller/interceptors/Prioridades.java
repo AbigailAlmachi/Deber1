@@ -8,4 +8,5 @@ public interface Prioridades {
     int AUDITORIA    = Interceptor.Priority.LIBRARY_AFTER + 1;
     int SMS          = Interceptor.Priority.LIBRARY_AFTER + 2;
     int MAIL         = Interceptor.Priority.LIBRARY_AFTER + 3;
+    int WHATSAPP     = Interceptor.Priority.LIBRARY_AFTER + 4;
 }
