@@ -9,5 +9,4 @@ import jakarta.interceptor.InterceptorBinding;
 @Target ({ElementType.TYPE, ElementType.METHOD})  //indica que la anotacion se puede aplicar a clases y metodos
 public @interface Auditoria {
 
-
 }

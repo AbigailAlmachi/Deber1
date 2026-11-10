@@ -1,5 +1,9 @@
 package com.edu.ec.taller;
 
+import com.edu.ec.taller.extensiones.NotificacionExtensionMail;
+import com.edu.ec.taller.extensiones.NotificacionExtensionSMS;
+import com.edu.ec.taller.extensiones.NotificacionExtensionWhatsApp;
+
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -9,46 +13,44 @@ import jakarta.inject.Inject;
 public class Main implements QuarkusApplication{
  
     @Inject
-    private PedidoService pedidoService;
+    private CompraService compraService;
 
-    //@Inject 
-    //private CompraService compraService;
+    @Inject 
+    private NotificacionExtensionMail notificacionExtensionMail;
+
+    @Inject
+    private NotificacionExtensionSMS notificacionExtensionSMS;
+
+    @Inject 
+    private NotificacionExtensionWhatsApp notificacionExtensionWhatsApp;
+
  
     public static void main(String[] args) {
         Quarkus.run(Main.class, args);
     }
  
     @Override
-    public int run(String... args) {        
+    public int run(String... args) {    
+    
         System.out.println("Iniciando Aplicacion quarkus");
- 
-        Pedido pedido =  new Pedido("Juan Perez", "laptop",150, "juan@gmail.com" );
-        pedido.setTelefono("0999999999");
-        this.pedidoService.realizar(pedido);
 
-        //Compra compra = new Compra("Esteban", "celular", 20, "ddddd");
-        //compra.setTelefono("09999999");
-       // this.compraService.realizar(compra);
+        System.out.println("--------------------------------------------------");
 
- 
- 
-        //El ambito: es el tiempo de vida de los componentes
-        //el conexto: es la situacion en la que se encuentra el componente
+        Compra compra = new Compra("Abigail", "celular", 1200, "abigail@gmail.com");
+        compraService.realizar(compra, this.notificacionExtensionMail);
+    
+        System.out.println("--------------------------------------------------");
+
+        Compra compra2 = new Compra("Pedro", "laptop", 2000, "pedro@gmail.com");
+        compraService.realizar(compra2, this.notificacionExtensionSMS);
+
+        System.out.println("--------------------------------------------------");
+
+        Compra compra3 = new Compra("Jimin", "Iphone", 100000, "jimin@gmail.com");
+        compraService.realizar(compra3, this.notificacionExtensionWhatsApp);
+        System.out.println("--------------------------------------------------");
 
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
         return 0;
     }
  
